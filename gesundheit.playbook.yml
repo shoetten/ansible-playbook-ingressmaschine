@@ -21,6 +21,16 @@
                 Token: "{{ vault_gesundheit_gotify.token }}"
               Filter:
                 - Module: "result-change"
+        # push gesundheit data through vpn to local network
+        - filename: handle-remote-backupmaschine
+          config:
+            Handler:
+              Module: "remote"
+              Config:
+                Address: "10.88.42.12:9999"
+                # pubkey is 7n/uq3G/vFojytMenj1cjrfNZIFbjUFtSVPJOJjA+Ro=
+                PrivateKey: "{{ vault_gesundheit_node_private_key }}"
+                PublicKey: "sDK9d9BYmf+O1ZFiavOBWXbuhhzZZ0eVt5yTM6PeVEs=" # pubkey of backupmaschine
         - filename: check-disk-space-root
           config:
             Check:
@@ -30,6 +40,12 @@
               Config:
                 MountPoint: "/"
                 MinAvailable: "1G"
+        - filename: check-heartbeat
+          config:
+            Check:
+              Module: "heartbeat"
+              Description: "Send heartbeat"
+              Interval: "30s"
         - filename: check-memory
           config:
             Check:
