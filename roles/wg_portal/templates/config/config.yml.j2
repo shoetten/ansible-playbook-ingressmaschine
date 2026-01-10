@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+
+core:
+  {{ wg_portal_core | to_nice_yaml | indent(2) }}
+
+mail:
+  {{ wg_portal_mail | to_nice_yaml | indent(2) }}
+
+web:
+  listening_address: "{{ wg_portal_web_bind_ip }}:{{ wg_portal_web_port }}"
+  external_url: https://{{ wg_portal_web_external_domain }}
+  site_company_name: {{ wg_portal_web_site_company_name }}
+  site_title: {{ wg_portal_web_site_title }}
+  session_identifier: wgPortalSession
+  session_secret: {{ vault_wg_portal_web_session_secret }}
+  csrf_secret: {{ vault_wg_portal_web_csrf_secret }}

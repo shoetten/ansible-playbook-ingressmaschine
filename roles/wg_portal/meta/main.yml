@@ -1,0 +1,13 @@
+---
+dependencies:
+  - role: caddy_vhost
+    vars:
+      caddy_vhost_name: wg_portal
+      caddy_vhost_caddyfile: |
+        {{ wg_portal_web_external_domain }} {
+          basicauth {
+            {{ wg_portal_basic_auth_user }} {{ vault_wg_portal_basic_auth_hash }}
+          }
+          reverse_proxy :8888
+        }
+    become: true

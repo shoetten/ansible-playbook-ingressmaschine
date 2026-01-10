@@ -1,0 +1,32 @@
+---
+- name: Setup wg-portal
+  hosts: all
+  tags:
+    - setup
+    - wg-portal
+    - monitoring
+  become: true
+  tasks:
+    - name: enable ipv4 traffic forwarding
+      ansible.posix.sysctl:
+        name: net.ipv4.conf.all.forwarding
+        value: "1"
+        sysctl_set: true
+    - name: enable ipv6 traffic forwarding
+      ansible.posix.sysctl:
+        name: net.ipv6.conf.all.forwarding
+        value: "1"
+        sysctl_set: true
+  roles:
+    - role: caddy
+    - role: wg_portal
+      wg_portal_mail:
+        host: mail.your-server.de
+        port: 465
+        encryption: ssl
+        cert_validation: true
+        auth_type: plain
+        from: Wireguard Portal Merse 88b <no-reply@merse88b.de>
+      wg_portal_web_external_domain: wg.merse88b.de
+      wg_portal_web_site_company_name: Merse 88b
+      wg_portal_basic_auth_user: merse

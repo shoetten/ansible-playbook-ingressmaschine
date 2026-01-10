@@ -1,0 +1,22 @@
+[Unit]
+Description=WireGuard Portal
+
+[Container]
+Image=ghcr.io/h44z/wg-portal:v2
+AutoUpdate=registry
+
+Volume=/etc/wireguard:/etc/wireguard
+Volume=./config:/app/config
+Volume=wg-portal.data.volume:/app/data
+
+Network=host
+AddCapability=NET_ADMIN
+
+[Service]
+Restart=unless-stopped
+# Extend Timeout to allow time to pull the image
+TimeoutStartSec=600
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

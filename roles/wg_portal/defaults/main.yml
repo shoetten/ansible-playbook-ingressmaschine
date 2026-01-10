@@ -1,0 +1,24 @@
+---
+wg_portal_core:
+  admin_user: "{{ vault_wg_portal_core_admin_user }}"
+  admin_password: "{{ vault_wg_portal_core_admin_password }}"
+
+wg_portal_mail:
+  host: mail.your-server.de
+  port: 465
+  encryption: ssl
+  cert_validation: true
+  auth_type: plain
+  from: Wireguard Portal <no-reply@example.org>
+  username: "{{ vault_wg_portal_mail_smtp_username }}"
+  password: "{{ vault_wg_portal_mail_smtp_password }}"
+  link_only: false
+  allow_peer_email: false
+
+wg_portal_web_bind_ip: 127.0.0.1
+wg_portal_web_port: 8888
+wg_portal_web_external_url: https://wg.example.org
+wg_portal_web_site_company_name: Organisation
+wg_portal_web_site_title: WireGuard Portal
+
+wg_portal_basic_auth_user: user

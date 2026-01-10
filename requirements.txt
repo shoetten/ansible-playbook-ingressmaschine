@@ -1,0 +1,5 @@
+ansible~=11.12.0
+ansible-lint
+jmespath
+netaddr
+toml

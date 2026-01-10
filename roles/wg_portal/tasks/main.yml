@@ -1,0 +1,31 @@
+---
+- name: Install wireguard user space tooling
+  ansible.builtin.apt:
+    name: wireguard
+    state: present
+    update_cache: true
+
+- name: Ensure config dir exists
+  ansible.builtin.file:
+    path: "/etc/containers/systemd/wg-portal/config"
+    state: directory
+    mode: "0750"
+
+- name: Add wg-portal config files
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/containers/systemd/wg-portal/{{ item }}"
+    mode: "0640"
+  with_items:
+    - podman-wg-portal.container
+    - wg-portal.data.volume
+    - config/config.yml
+
+- name: Reload systemd units
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Restart wg-portal
+  ansible.builtin.systemd_service:
+    name: podman-wg-portal.service
+    state: restarted
