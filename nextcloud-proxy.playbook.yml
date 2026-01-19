@@ -1,0 +1,19 @@
+---
+- name: Setup nextcloud reverse proxy
+  hosts: all
+  tags:
+    - nextcloud
+  become: true
+  roles:
+    - role: caddy
+    - role: caddy_vhost
+      caddy_vhost_name: nextcloud
+      caddy_vhost_caddyfile: |
+        nextcloud.hoetten.org {
+          encode
+          reverse_proxy https://10.88.42.1:443 {
+            transport http {
+              tls_server_name nextcloud.hoetten.org
+            }
+          }
+        }

@@ -2,7 +2,7 @@
 - name: Setup wg-portal
   hosts: all
   tags:
-    - setup
+    - wireguard
     - wg-portal
   become: true
   tasks:
