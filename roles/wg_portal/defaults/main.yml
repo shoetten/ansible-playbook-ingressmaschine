@@ -4,7 +4,7 @@ wg_portal_core:
   admin_password: "{{ vault_wg_portal_core_admin_password }}"
 
 wg_portal_mail:
-  host: mail.your-server.de
+  host: mail.example.org
   port: 465
   encryption: ssl
   cert_validation: true

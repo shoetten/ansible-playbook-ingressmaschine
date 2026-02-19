@@ -34,6 +34,10 @@
         cert_validation: true
         auth_type: plain
         from: Wireguard Portal Merse 88b <no-reply@merse88b.de>
+        username: "{{ vault_wg_portal_mail_smtp_username }}"
+        password: "{{ vault_wg_portal_mail_smtp_password }}"
+        link_only: false
+        allow_peer_email: false
       wg_portal_web_external_domain: wg.merse88b.de
       wg_portal_web_site_company_name: Merse 88b
       wg_portal_basic_auth_user: merse
