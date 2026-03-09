@@ -1,0 +1,6 @@
+---
+- name: Restart wg-portal
+  ansible.builtin.systemd:
+    name: podman-wg-portal.service
+    state: restarted
+    daemon_reload: true

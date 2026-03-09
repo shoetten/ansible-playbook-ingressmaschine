@@ -20,12 +20,8 @@
     - podman-wg-portal.container
     - wg-portal.data.volume
     - config/config.yml
+  notify: "Restart wg-portal"
 
 - name: Reload systemd units
   ansible.builtin.systemd:
     daemon_reload: true
-
-- name: Restart wg-portal
-  ansible.builtin.systemd_service:
-    name: podman-wg-portal.service
-    state: restarted
