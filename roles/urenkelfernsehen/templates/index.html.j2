@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urenkelfernsehen</title>
+
+    <script src="https://jitsi.fem.tu-ilmenau.de/external_api.js"></script>
+    <style>
+      body,
+      #meet {
+        height: 100vh;
+        margin: 0;
+      }
+      #meet {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="meet"></div>
+    <script>
+      const domain = "jitsi.fem.tu-ilmenau.de";
+      const options = {
+        roomName: "OmaJosiGucktUrEnkelFernsehen9012949",
+        width: "100%",
+        height: "100%",
+        parentNode: document.querySelector("#meet"),
+        lang: "de",
+        configOverwrite: {
+          prejoinConfig: {
+            enabled: false,
+          },
+        },
+      };
+      const api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+  </body>
+</html>

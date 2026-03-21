@@ -1,0 +1,18 @@
+---
+- name: Ensure caddy root dir exists
+  ansible.builtin.file:
+    path: "/usr/share/caddy/urenkelfernsehen"
+    state: directory
+    mode: "0700"
+    owner: "{{ caddy_user }}"
+    group: "{{ caddy_user }}"
+
+- name: Add urenkelfernsehen index.html file
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/usr/share/caddy/urenkelfernsehen/{{ item }}"
+    owner: "{{ caddy_user }}"
+    mode: "0640"
+  with_items:
+    - index.html
+  notify: "Reload caddy"

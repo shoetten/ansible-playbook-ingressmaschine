@@ -1,0 +1,17 @@
+---
+dependencies:
+  - role: caddy_vhost
+    vars:
+      caddy_vhost_name: urenkelfernsehen
+      caddy_vhost_caddyfile: |
+        urenkelfernsehen.hoetten.org {
+          basicauth {
+            oma $2a$14$Q49lla5O0zsbHLzKpU2EquGKJrjUbRH4hq05Sk.WPcawui4psqxHa
+          }
+          # Set this path to your site's directory.
+          root * /usr/share/caddy/urenkelfernsehen
+
+          # Enable the static file server.
+          file_server
+        }
+    become: true

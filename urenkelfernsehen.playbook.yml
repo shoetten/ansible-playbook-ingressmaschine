@@ -1,0 +1,6 @@
+---
+- name: Setup urenkelfernsehen
+  hosts: all
+  become: true
+  roles:
+    - role: urenkelfernsehen
