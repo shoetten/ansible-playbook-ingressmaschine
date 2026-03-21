@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urenkelfernsehen</title>
 
-    <script src="https://jitsi.fem.tu-ilmenau.de/external_api.js"></script>
+    <script src="https://jitsi.hamburg.ccc.de/external_api.js"></script>
     <style>
       body,
       #meet {
@@ -20,17 +20,23 @@
   <body>
     <div id="meet"></div>
     <script>
-      const domain = "jitsi.fem.tu-ilmenau.de";
+      const domain = "jitsi.hamburg.ccc.de";
       const options = {
         roomName: "OmaJosiGucktUrEnkelFernsehen9012949",
         width: "100%",
         height: "100%",
         parentNode: document.querySelector("#meet"),
         lang: "de",
+        userInfo: {
+          displayName: 'Uroma Josi',
+        },
         configOverwrite: {
           prejoinConfig: {
             enabled: false,
           },
+          startWithVideoMuted: false,
+          startWithAudioMuted: true,
+          startAudioOnly: false,
         },
       };
       const api = new JitsiMeetExternalAPI(domain, options);
