@@ -22,5 +22,6 @@
 
 - name: WG Portal
   ansible.builtin.import_playbook: wg-portal.playbook.yml
-# - name: Ntfy
-#   ansible.builtin.import_playbook: ntfy.playbook.yml
+
+- name: Ntfy
+  ansible.builtin.import_playbook: ntfy.playbook.yml

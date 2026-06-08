@@ -1,0 +1,10 @@
+---
+dependencies:
+  - role: caddy_vhost
+    vars:
+      caddy_vhost_name: ntfy
+      caddy_vhost_caddyfile: |
+        {{ ntfy_domain }} {
+            reverse_proxy 127.0.0.1:{{ ntfy_port }}
+        }
+    become: true

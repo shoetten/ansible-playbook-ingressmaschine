@@ -1,0 +1,26 @@
+---
+ntfy_image_tag: latest
+ntfy_bind_ip: "127.0.0.1"
+ntfy_port: 9876
+ntfy_domain: ntfy.example.com
+ntfy_base_url: https://{{ ntfy_domain }}
+ntfy_enable_login: true
+ntfy_require_login: true
+ntfy_auth_default_access: deny-all # safe default for a private instance
+# Use bcrypt hash for the password, e.g. via ntfy user hash
+# see https://docs.ntfy.sh/config/#access-control for details
+ntfy_auth_users:
+  - username: admin
+    password_hash: $$2a$$10$$YLiO8U21sX1uhZamTLJXHuxgVC0Z/GKISibrKCLohPgtG7yIxSk4C # Must escape '$' as '$$'
+    role: admin
+# Allow anonymous write access for the matrix server by default to publish to UnifiedPush topics
+# See UnifiedPush documentation:
+# - https://docs.ntfy.sh/config/#example-unifiedpush
+ntfy_auth_access:
+  - username: "*"
+    topic_pattern: up* # mind the underscore, instead of dash
+    access: wo
+# Permit Matrix server to bypass rate limits
+# See Rate limiting documentation:
+# - https://docs.ntfy.sh/config/#rate-limiting
+ntfy_visitor_request_limit_exempt_hosts: matrix.example.com

@@ -1,0 +1,11 @@
+---
+- name: Setup ntfy
+  hosts: all
+  tags:
+    - ntfy
+  become: true
+  roles:
+    - role: ntfy
+      ntfy_domain: ntfy.merse88b.de
+      ntfy_auth_users: "{{ vault_ntfy_auth_users }}"
+      ntfy_visitor_request_limit_exempt_hosts: "{{ vault_ntfy_visitor_request_limit_exempt_hosts }}"

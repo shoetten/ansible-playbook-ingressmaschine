@@ -1,0 +1,3 @@
+---
+_ntfy_auth_users_string: "{{ ntfy_auth_users | json_query('[].join(`:`, [username, password_hash, role])') | join(',') }}"
+_ntfy_auth_access_string: "{{ ntfy_auth_access | json_query('[].join(`:`, [username, topic_pattern, access])') | join(',') }}" # <username>:<topic-pattern>:<access>

@@ -1,2 +1,5 @@
 ---
 # ports
+gesundheit_http_listen_port: 9876
+wg_portal_web_port: 8888
+ntfy_port: 4567
