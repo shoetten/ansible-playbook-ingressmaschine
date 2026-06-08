@@ -8,3 +8,16 @@
   ansible.builtin.service:
     name: podman
     enabled: true
+
+- name: Ensure config folder exists
+  ansible.builtin.file:
+    path: "/etc/containers/containers.conf.d"
+    state: directory
+    mode: "0750"
+
+- name: Specify default subnet
+  ansible.builtin.template:
+    src: "subnet.conf.j2"
+    dest: "/etc/containers/containers.conf.d/subnet.conf"
+    mode: "0640"
+  notify: "Restart podman"
