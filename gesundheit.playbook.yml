@@ -30,6 +30,26 @@
                 # pubkey is 7n/uq3G/vFojytMenj1cjrfNZIFbjUFtSVPJOJjA+Ro=
                 PrivateKey: "{{ vault_gesundheit_node_private_key }}"
                 PublicKey: "sDK9d9BYmf+O1ZFiavOBWXbuhhzZZ0eVt5yTM6PeVEs=" # pubkey of backupmaschine
+        - filename: input-remote
+          config:
+            Input:
+              Module: "remote"
+              Config:
+                Listen: ":9999"
+                # pubkey is 7n/uq3G/vFojytMenj1cjrfNZIFbjUFtSVPJOJjA+Ro=
+                PrivateKey: "{{ vault_gesundheit_node_private_key }}"
+                Peers:
+                  - PublicKey: "vLL+QKR+RKtnbAe+A+YfYOP45hSR+JTqkdK3pl2R1Gk=" # mediamaschine
+        - filename: check-mediamaschine-alive
+          config:
+            Check:
+              Module: "node-alive"
+              Description: "Check if mediamaschine is alive"
+              Interval: "1m"
+              Config:
+                Node: "mediamaschine" # node name is hostname by default
+                MaxAbsenceTime: "5m"
+
         - filename: check-disk-space-root
           config:
             Check:
