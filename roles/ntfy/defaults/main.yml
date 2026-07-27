@@ -19,7 +19,7 @@ ntfy_auth_users:
 ntfy_auth_access:
   - username: "*"
     topic_pattern: up* # mind the underscore, instead of dash
-    access: wo
+    access: write-only
 # Permit Matrix server to bypass rate limits
 # See Rate limiting documentation:
 # - https://docs.ntfy.sh/config/#rate-limiting
