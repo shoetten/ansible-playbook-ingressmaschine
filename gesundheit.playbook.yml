@@ -26,10 +26,10 @@
             Handler:
               Module: "remote"
               Config:
-                Address: "10.88.42.12:9999"
+                Address: "10.88.42.23:9999"
                 # pubkey is 7n/uq3G/vFojytMenj1cjrfNZIFbjUFtSVPJOJjA+Ro=
                 PrivateKey: "{{ vault_gesundheit_node_private_key }}"
-                PublicKey: "sDK9d9BYmf+O1ZFiavOBWXbuhhzZZ0eVt5yTM6PeVEs=" # pubkey of backupmaschine
+                PublicKey: "xP10XJsMO2T2ukKF7oTSFcvte/ggd1Fo1kz1m2uJ80U=" # pubkey of monitoringmaschine
         - filename: input-remote
           config:
             Input:
