@@ -21,7 +21,7 @@
               Filter:
                 - Module: "result-change"
         # push gesundheit data through vpn to local network
-        - filename: handle-remote-backupmaschine
+        - filename: handle-remote-monitoringmaschine
           config:
             Handler:
               Module: "remote"
@@ -40,6 +40,7 @@
                 PrivateKey: "{{ vault_gesundheit_node_private_key }}"
                 Peers:
                   - PublicKey: "vLL+QKR+RKtnbAe+A+YfYOP45hSR+JTqkdK3pl2R1Gk=" # mediamaschine
+                  - PublicKey: "XpJdiqy4eRMX2/wGXIJhnD3zrZKEBUynlww4gbUhnB0=" # traummaschine
         - filename: check-mediamaschine-alive
           config:
             Check:
@@ -48,6 +49,15 @@
               Interval: "1m"
               Config:
                 Node: "mediamaschine" # node name is hostname by default
+                MaxAbsenceTime: "5m"
+        - filename: check-traummaschine-alive
+          config:
+            Check:
+              Module: "node-alive"
+              Description: "Check if traummaschine is alive"
+              Interval: "1m"
+              Config:
+                Node: "traummaschine" # node name is hostname by default
                 MaxAbsenceTime: "5m"
 
         - filename: check-disk-space-root
